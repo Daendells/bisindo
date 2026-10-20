@@ -2,6 +2,8 @@
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const ORT_URL = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.2/dist/";
+// SRI hash of ORT_URL + "ort.min.js"; update both together when bumping the version.
+const ORT_SRI = "sha384-4uQjzVxVRlLf2zq2sqRNKh3IzetqQzu15fI6xgLQzhXYGJMtTZc/fvdszanED0Zp";
 const CONF_MIN = 0.6;    // below this the app says "not sure" (precision on validation: see results.json)
 const DETECT_MIN = 0.25; // below this there is no box at all (Ultralytics' default)
 const WINDOW = 8;        // camera frames in the vote
@@ -200,9 +202,11 @@ function renderLetters() {
 
 /* ---------- model ---------- */
 
-function loadScript(src) {
+function loadScript(src, integrity) {
   return new Promise((resolve, reject) => {
     const s = document.createElement("script");
+    s.integrity = integrity;
+    s.crossOrigin = "anonymous";
     s.src = src;
     s.onload = resolve;
     s.onerror = () => reject(new Error("Could not load ONNX Runtime from the CDN."));
@@ -254,7 +258,7 @@ function loadModel() {
     sessionPromise = (async () => {
       setStatus("Loading ONNX Runtime…");
       stageMessage("Loading ONNX Runtime…", null);
-      if (!window.ort) await loadScript(ORT_URL + "ort.min.js");
+      if (!window.ort) await loadScript(ORT_URL + "ort.min.js", ORT_SRI);
       ort.env.wasm.wasmPaths = ORT_URL;
       ort.env.wasm.numThreads = 1; // GitHub Pages is not cross-origin isolated, so threads are unavailable
       const bytes = await fetchModel(results.model.file);
