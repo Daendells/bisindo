@@ -336,10 +336,9 @@ function setStatus(text, tone) {
   if (tone) el.dataset.tone = tone; else delete el.dataset.tone;
 }
 
-function setStage(newMode, w, h) {
+function setStage(newMode) {
   mode = newMode;
   if (newMode) stage.dataset.mode = newMode; else delete stage.dataset.mode;
-  if (w && h) stage.style.setProperty("--ar", `${w} / ${h}`);
 }
 
 function drawBox(r, w, h, mirrored) {
@@ -482,7 +481,7 @@ async function startCamera() {
     $("caption").textContent = "";
     $("verdict").textContent = "";
     $("letters").querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "false"));
-    setStage("camera", video.videoWidth, video.videoHeight);
+    setStage("camera");
     setStatus("Camera on. Show a letter.");
     setCameraButton(true);
     requestAnimationFrame(loop);
@@ -529,7 +528,7 @@ async function showImage(src, sample) {
     view.width = w;
     view.height = h;
     view.getContext("2d").drawImage(img, 0, 0);
-    setStage("image", w, h);
+    setStage("image");
     $("caption").textContent = sample ? sample.caption : "Your photo";
     const r = await infer(img, w, h);
     if (mine !== token) return;

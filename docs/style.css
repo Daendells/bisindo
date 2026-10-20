@@ -139,7 +139,9 @@ p { margin: 0; }
 
 .panel { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 
-.stage { position: relative; aspect-ratio: var(--ar, 4 / 3); max-height: 72vh; background: var(--stage); border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; }
+/* Fixed 4:3 box at full width: photos and camera are letterboxed inside, so the layout never jumps.
+   width: 100% keeps max-height from shrinking the width through the aspect ratio. */
+.stage { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: 72vh; background: var(--stage); border-radius: var(--radius) var(--radius) 0 0; overflow: hidden; }
 .stage video, .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
 .stage video { transform: scaleX(-1); }
 .stage[data-mode="camera"] .view, .stage[data-mode="image"] video, .stage:not([data-mode]) video, .stage:not([data-mode]) canvas { visibility: hidden; }
