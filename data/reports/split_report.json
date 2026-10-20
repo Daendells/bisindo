@@ -1,0 +1,43 @@
+{
+  "raw_train": 9169,
+  "raw_val": 2301,
+  "dropped_no_label_or_empty": 2,
+  "train_within_dupes_dropped": 1172,
+  "val_within_dupes_dropped": 266,
+  "cross_split_leaked_dropped_from_val": 75,
+  "final": {
+    "train": 7995,
+    "val": 1726,
+    "test": 234
+  },
+  "test_per_class": {
+    "0": 9,
+    "1": 9,
+    "2": 8,
+    "3": 9,
+    "4": 9,
+    "5": 9,
+    "6": 8,
+    "7": 9,
+    "8": 10,
+    "9": 10,
+    "10": 10,
+    "11": 10,
+    "12": 9,
+    "13": 9,
+    "14": 9,
+    "15": 11,
+    "16": 8,
+    "17": 8,
+    "18": 8,
+    "19": 9,
+    "20": 9,
+    "21": 9,
+    "22": 9,
+    "23": 9,
+    "24": 8,
+    "25": 9
+  },
+  "seed": 42,
+  "split_version": "v1"
+}

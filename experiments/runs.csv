@@ -1,0 +1,7 @@
+experiment_id,config,seed,split_version,model,imgsz,batch,epochs,optimizer,lr0,device,amp,val_map50_95,val_map50,val_P,val_R,runtime_min,checkpoint,notes
+20260911_130656_smoke,configs/baseline.yaml,42,v1,yolo11n.pt,160,4,1,AdamW,0.001,cpu,False,0.0789,0.1169,0.2717,0.1244,1.4,checkpoints\20260911_130656_smoke\weights\best.pt,SMOKE TEST
+20260911_204634,configs/baseline.yaml,42,v1,yolo11n.pt,320,4,1,AdamW,0.001,0,True,0.5531,0.6485,0.669,0.5597,3.5,checkpoints\20260911_204634\weights\best.pt,Frozen baseline for 3050-4GB. Tune ONE thing at a time after baseline exists.
+20260911_205035,configs/baseline.yaml,42,v1,yolo11n.pt,320,4,50,AdamW,0.001,0,True,0.9227,0.994,0.9926,0.9946,112.6,checkpoints\20260911_205035\weights\best.pt,Frozen baseline for 3050-4GB. Tune ONE thing at a time after baseline exists.
+20260912_012657,configs/baseline.yaml,42,v2,yolo11n.pt,320,4,50,AdamW,0.001,0,True,0.8402,0.9904,0.97,0.9734,26.3,checkpoints\20260911_225041\weights\best.pt,RESUME of 20260911_225041 (2x OOM resume plots=False workers=1). 26.3min=last segment only. Frozen baseline for 3050-4GB.
+20260916_112443,configs/baseline_v8n.yaml,42,v2,yolov8n.pt,320,4,50,AdamW,0.001,0,True,0.847,0.9902,0.9777,0.9861,91.7,checkpoints\20260916_112443\weights\best.pt,Frozen baseline for 3050-4GB. Tune ONE thing at a time after baseline exists.
+20261020_130346,configs/yolo11n_416.yaml,42,v2,yolo11n.pt,416,4,50,AdamW,0.001,0,True,0.8342,0.9923,0.9807,0.9892,115.3,checkpoints\20261020_130346\weights\best.pt,"imgsz 320->416, everything else equal to yolo11n.yaml"

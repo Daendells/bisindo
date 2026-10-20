@@ -1,0 +1,44 @@
+{
+  "feat": "concat",
+  "best_params": {
+    "svc__C": 1000,
+    "svc__gamma": 0.01
+  },
+  "cv_f1_macro": 0.9408,
+  "all": {
+    "xyz": {
+      "best": {
+        "svc__C": 1000,
+        "svc__gamma": "scale"
+      },
+      "cv_f1": 0.9298,
+      "secs": 40
+    },
+    "geo": {
+      "best": {
+        "svc__C": 1000,
+        "svc__gamma": 0.1
+      },
+      "cv_f1": 0.93,
+      "secs": 25
+    },
+    "concat": {
+      "best": {
+        "svc__C": 1000,
+        "svc__gamma": 0.01
+      },
+      "cv_f1": 0.9408,
+      "secs": 34
+    }
+  },
+  "val": {
+    "n": 1194,
+    "n_detected": 1117,
+    "top1_global": 0.773
+  },
+  "holdout": {
+    "n": 312,
+    "n_detected": 282,
+    "top1_global": 0.8173
+  }
+}

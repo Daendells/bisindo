@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+
+# Images stay local: the training set has no stated licence, and both sets are large.
+# Split lists, audit reports and per-image predictions are committed instead.
+data/raw/
+data/processed/
+data/holdout_achmadnoer/
+*.zip
+
+# Weights, runs and logs (the exported web model under docs/model is the one exception)
+*.pt
+*.onnx
+!docs/model/*.onnx
+checkpoints/
+runs/
+*.log
+*.err
+
+# Derived features and fitted baselines (regenerate with the baseline scripts)
+experiments/landmarks/
+experiments/dino_probe/*.npz
+experiments/svm_final_eval/*.joblib
+
+# Local only
+.archive/

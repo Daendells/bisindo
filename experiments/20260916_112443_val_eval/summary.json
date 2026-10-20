@@ -1,0 +1,9 @@
+{
+  "weights": "checkpoints\\20260916_112443\\weights\\best.pt",
+  "split": "val",
+  "map50-95": 0.8469,
+  "map50": 0.9902,
+  "mean_precision": 0.9777,
+  "mean_recall": 0.9861,
+  "fitness": 0.8612
+}

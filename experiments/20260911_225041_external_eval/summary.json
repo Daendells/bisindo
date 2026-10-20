@@ -1,0 +1,23 @@
+{
+  "weights": "checkpoints\\20260911_225041\\weights\\best.pt",
+  "n": 312,
+  "top1_acc": 0.9455,
+  "n_nopred": 4,
+  "top_confusions": [
+    [
+      "Y",
+      "N",
+      8
+    ],
+    [
+      "O",
+      "N",
+      3
+    ],
+    [
+      "O",
+      "I",
+      2
+    ]
+  ]
+}
