@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BISINDO Fingerspelling — in-browser letter recognition</title>
+  <meta name="description" content="Recognise the 26 letters of the Indonesian Sign Language (BISINDO) alphabet from a webcam, on-device, with a 2.6M-parameter YOLO11n model. Accuracy measured on held-out images and an unseen signer.">
+  <meta name="author" content="Davin Jonathan Tanus">
+  <meta property="og:title" content="BISINDO Fingerspelling">
+  <meta property="og:description" content="Read the BISINDO alphabet from a webcam, right in your browser — with honest accuracy numbers.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daendells.github.io/bisindo/">
+  <meta property="og:image" content="https://daendells.github.io/bisindo/preview.png">
+  <meta name="theme-color" content="#1e3a5f">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@600&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#demo">Skip to the demo</a>
+  <noscript><p class="noscript">The demo and the results on this page need JavaScript. The numbers are also in <a href="results.json">results.json</a> and the <a href="https://github.com/Daendells/bisindo">repository README</a>.</p></noscript>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect width="14" height="14" x="5" y="5" rx="2"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol>
+  </svg>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="BISINDO Fingerspelling, home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#1e3a5f"/><text x="16" y="23" text-anchor="middle" font-family="Georgia, serif" font-size="19" font-weight="700" fill="#fb923c">B</text></svg>
+        BISINDO Fingerspelling
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a class="nav-section" href="#demo">Demo</a>
+        <a class="nav-section" href="#results">Results</a>
+        <a class="nav-section" href="#method">Method</a>
+        <a href="https://github.com/Daendells/bisindo"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Source</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+        <p class="eyebrow">Personal ML project · Indonesian Sign Language</p>
+        <h1>Reading the BISINDO alphabet, right in your browser.</h1>
+        <p class="lede">A <span data-stat="model.params_m">2.6</span>M-parameter YOLO11n detector recognises all 26 letters of the Bahasa Isyarat Indonesia alphabet, as still handshapes, from a single camera frame. It runs on your device with ONNX Runtime Web, so no video is uploaded, and every accuracy figure below comes from images the model never trained on.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#demo"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg>Try the live demo</a>
+          <a class="btn" href="#failures">See where it fails</a>
+        </div>
+        </div>
+        <figure class="hero-fig" id="hero-fig" hidden>
+          <div class="hero-shot">
+            <img id="hero-img" alt="Two hands signing the letter B in front of a plain wall, with the model's detection box around them" width="479" height="480">
+            <span class="hero-box" id="hero-box"><span class="hero-tag" id="hero-tag"></span></span>
+          </div>
+          <figcaption>The deployed model's actual output on a photo from the unseen signer.</figcaption>
+        </figure>
+        <dl class="figures">
+          <div><dt data-stat="eval.test.top1|pct">—</dt><dd>correct on <span data-stat="eval.test.n|int">798</span> held-out test photos</dd></div>
+          <div><dt data-stat="eval.external.top1|pct">—</dt><dd>on <span data-stat="eval.external.n|int">312</span> photos of a signer it never saw</dd></div>
+          <div><dt><span data-stat="model.size_mb">—</span> MB</dt><dd>model, downloaded once</dd></div>
+          <div><dt><span data-stat="model.cpu_ms">—</span> ms</dt><dd>per frame on a laptop CPU</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="demo" aria-labelledby="demo-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="demo-title">Live demo</h2>
+          <p>Sign one letter at a time, about an arm's length from the camera, with both hands in view when the letter uses two. Hold a letter steady for a second to type it; lower your hands between two identical letters.</p>
+        </div>
+
+        <div class="demo">
+          <div class="panel">
+            <div class="stage" id="stage">
+              <video id="video" playsinline muted></video>
+              <canvas class="view" id="view"></canvas>
+              <canvas class="overlay" id="overlay"></canvas>
+              <div class="stage-empty">
+                <svg class="icon" aria-hidden="true"><use href="#i-hand"/></svg>
+                <p id="stage-hint">Start the camera, upload a photo, or pick a sample letter below.</p>
+                <div class="progress" id="progress" role="progressbar" aria-label="Model download" aria-valuemin="0" aria-valuemax="100" hidden><span id="progress-bar"></span></div>
+              </div>
+              <p class="stage-caption" id="caption"></p>
+            </div>
+            <div class="controls">
+              <button class="btn btn-primary" id="camera-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg><span>Start camera</span></button>
+              <button class="btn" id="upload-btn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-upload"/></svg>Upload a photo</button>
+              <input id="file" type="file" accept="image/*" hidden>
+            </div>
+            <div class="samples">
+              <div class="samples-head">
+                <strong id="samples-title">Photos from a signer the model never saw</strong>
+                <span>Press a letter again for another background</span>
+              </div>
+              <div class="letters" id="letters" role="group" aria-labelledby="samples-title"></div>
+            </div>
+          </div>
+
+          <div class="panel result" aria-labelledby="result-title">
+            <div>
+              <p class="label" id="result-title">Detected letter</p>
+              <div class="readout">
+                <span class="big-letter" id="letter" data-state="empty">–</span>
+                <span class="verdict" id="verdict"></span>
+              </div>
+              <p class="status" id="status">On first use the demo downloads the model (<span data-stat="model.size_mb">10.5</span> MB) and the ONNX Runtime engine (11 MB); after that, everything runs on this device.</p>
+            </div>
+            <div>
+              <p class="label">Confidence <span class="conf-value" id="conf">—</span></p>
+              <div class="meter" aria-hidden="true"><div class="meter-fill" id="meter"></div><span class="meter-tick"></span></div>
+              <p class="meter-legend"><span>0%</span><span>60%: below this it says “not sure”</span></p>
+            </div>
+            <div>
+              <p class="label">Runners-up</p>
+              <ul class="alts" id="alts"></ul>
+            </div>
+            <div class="typed">
+              <p class="label" id="typed-label">Typed text</p>
+              <output class="typed-out" id="typed" aria-labelledby="typed-label"></output>
+              <div class="hold" aria-hidden="true"><span id="hold"></span></div>
+              <div class="typed-actions">
+                <button class="btn" type="button" data-key="space">Space</button>
+                <button class="btn" type="button" data-key="back">Delete</button>
+                <button class="btn" type="button" data-key="clear">Clear</button>
+                <label class="check"><input type="checkbox" id="auto" checked> Type automatically</label>
+              </div>
+              <p class="timing" id="timing"></p>
+            </div>
+          </div>
+        </div>
+
+        <p class="privacy"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Frames are processed inside your browser and are never sent anywhere. The page only downloads the model and the ONNX Runtime library.</p>
+        <p class="sr-only" id="live" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section" id="results" aria-labelledby="results-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="results-title">How accurate is it?</h2>
+          <p>Each photo gets one answer: the most confident box. A photo with no box counts as wrong. The model was chosen using the validation set only; the test set was scored once, after that choice.</p>
+        </div>
+
+        <div class="tiles">
+          <article class="panel tile">
+            <p class="tile-name">Validation</p>
+            <p class="tile-note">Used to choose between models</p>
+            <p class="tile-value" data-stat="eval.val.top1|pct">—</p>
+            <p class="tile-sub"><span data-stat="eval.val.correct|int">—</span> of <span data-stat="eval.val.n|int">—</span> correct · macro-F1 <span data-stat="eval.val.macro_f1">—</span></p>
+          </article>
+          <article class="panel tile" id="test-tile">
+            <p class="tile-name">Held-out test</p>
+            <p class="tile-note">Scored once, after the choice</p>
+            <p class="tile-value" data-stat="eval.test.top1|pct">—</p>
+            <p class="tile-sub"><span data-stat="eval.test.correct|int">—</span> of <span data-stat="eval.test.n|int">—</span> correct · macro-F1 <span data-stat="eval.test.macro_f1">—</span></p>
+          </article>
+          <article class="panel tile">
+            <p class="tile-name">Unseen signer</p>
+            <p class="tile-note">A different person and backgrounds</p>
+            <p class="tile-value" data-stat="eval.external.top1|pct">—</p>
+            <p class="tile-sub"><span data-stat="eval.external.correct|int">—</span> of <span data-stat="eval.external.n|int">—</span> correct · macro-F1 <span data-stat="eval.external.macro_f1">—</span></p>
+          </article>
+        </div>
+
+        <div class="block">
+          <h3>Accuracy per letter</h3>
+          <p>The stronger the orange, the more mistakes; grey means every photo of that letter was right. Hover or focus a cell for the details, or open the table.</p>
+          <div class="heat" id="heat"></div>
+          <ul class="legend" aria-label="Legend">
+            <li><i></i>100%</li>
+            <li><i data-b="1"></i>90–99%</li>
+            <li><i data-b="2"></i>70–89%</li>
+            <li><i data-b="3"></i>40–69%</li>
+            <li><i data-b="4"></i>below 40%</li>
+          </ul>
+          <details>
+            <summary>Show as a table</summary>
+            <div class="table-scroll"><table id="heat-table"></table></div>
+          </details>
+        </div>
+
+        <div class="block" id="failures">
+          <h3>Where it fails</h3>
+          <p>The mistakes are not spread evenly. They sit on a few letters, and the reasons are specific.</p>
+          <div class="cases">
+            <article class="panel case">
+              <h3>O and Y, on a new signer</h3>
+              <p id="case-oy">—</p>
+              <div class="case-figs">
+                <figure><img src="samples/O-2.jpg" alt="Letter O from the unseen signer: thumb and index finger touching, other three fingers raised" loading="lazy" width="480" height="480"><figcaption id="cap-o">O from the unseen signer</figcaption></figure>
+                <figure><img src="samples/Y-2.jpg" alt="Letter Y from the unseen signer: two hands with index fingers crossing" loading="lazy" width="480" height="480"><figcaption id="cap-y">Y from the unseen signer</figcaption></figure>
+              </div>
+              <p>In this signer's photos, O is a ring made by the thumb and index finger while the other three fingers stay up; in the training photos the fingers curl together into one ring. A model can only learn the variants it is shown, and the training set has one way of signing each letter. More signers, not more epochs, is the fix.</p>
+            </article>
+            <article class="panel case">
+              <h3>M and N, one finger apart</h3>
+              <p id="case-mn">—</p>
+              <p>M and N are both signed with fingers laid across the other palm; the difference is one finger. That made input resolution the one experiment worth running on top of the baseline: the same model and recipe at 416 instead of 320 pixels.</p>
+              <p id="case-exp">—</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Compared with other approaches</h3>
+          <p>Same splits, same one-answer-per-photo rule. The detector is the one the demo ships.</p>
+          <div class="table-scroll"><table id="compare"></table></div>
+          <p class="footnote">Sizes and timings for the detectors are measured on the exported ONNX files (median of 50 runs, ONNX Runtime on an Intel i5-11400H laptop CPU). The landmark baseline extracted one hand per photo, but many BISINDO letters use two hands, and it counts a photo as wrong when no hand is found. <span id="threshold-note"></span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="method-title">How it was built</h2>
+          <p>Most of the work went into making the numbers trustworthy, not into the model.</p>
+        </div>
+        <ol class="steps">
+          <li><h3>Audit the data</h3><p>The public dataset (<span data-stat="audit.raw_images|int">—</span> photos) held <span data-stat="audit.exact_duplicates|int">—</span> exact duplicates and <span data-stat="audit.cross_split_copies|int">—</span> photos that sat in both train and validation. <span data-stat="audit.val_near_copy_share|pct0">—</span> of validation photos were near-copies of training photos, because augmentation had been applied before the split.</p></li>
+          <li><h3>Split by group</h3><p>Photos were clustered by perceptual hash into <span data-stat="audit.phash_groups|int">—</span> groups, and whole groups went to train, validation or test (<span data-stat="audit.split.train|int">—</span> / <span data-stat="audit.split.val|int">—</span> / <span data-stat="audit.split.test|int">—</span>). Near-copies in validation fell to <span data-stat="audit.val_near_copy_share_after|pct">—</span>. YOLO11n at 320 px scored mAP50-95 <span data-stat="audit.leaky_split_map50_95">—</span> on the leaky split and <span data-stat="audit.clean_split_map50_95">—</span> on the clean one.</p></li>
+          <li><h3>Train small</h3><p>YOLO11n from COCO weights, 50 epochs at 320 and at 416 px input, AdamW with a cosine schedule and mild augmentation. Horizontal flips stay off: a mirrored sign is not guaranteed to be the same letter.</p></li>
+          <li><h3>Choose on validation</h3><p>One change at a time, compared on validation only. The test split stayed untouched until the model was frozen.</p></li>
+          <li><h3>Test on a stranger</h3><p>312 photos of a different signer against three backgrounds, published under CC0, played no part in training or model choice.</p></li>
+          <li><h3>Ship to the browser</h3><p>Exported to ONNX and run with ONNX Runtime Web. On camera, the app takes the vote of the last 8 frames and only types a letter that wins 6 of them at 60% confidence or more.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="limits-title">
+      <div class="wrap two-col">
+        <div>
+          <h2 id="limits-title">Limits</h2>
+          <ul class="plain-list">
+            <li>Still handshapes only, one letter at a time. Words, numbers and movement are out of scope.</li>
+            <li>The training photos come from a small group of signers against plain walls. Handshapes that differ from theirs fail, as O and Y show.</li>
+            <li>Lighting, distance and busy backgrounds affect the camera demo more than the photo benchmarks above.</li>
+            <li>It is a learning project, not a translation tool, and it has not been evaluated with Deaf signers.</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Credits</h2>
+          <ul class="plain-list">
+            <li>Training data: <a href="https://www.kaggle.com/datasets/agungmrf/indonesian-sign-language-bisindo">Indonesian Sign Language (BISINDO)</a> by agungmrf on Kaggle. Its licence is not stated, so the photos are not redistributed here.</li>
+            <li>Unseen-signer set: <a href="https://www.kaggle.com/datasets/achmadnoer/alfabet-bisindo">Alfabet BISINDO</a> by achmadnoer on Kaggle, CC0. The sample photos on this page come from it.</li>
+            <li>Built with <a href="https://github.com/ultralytics/ultralytics">Ultralytics YOLO11</a> and <a href="https://onnxruntime.ai/">ONNX Runtime Web</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      <p>Built by <a href="https://portofolio-liard-ten.vercel.app/">Davin Jonathan Tanus</a></p>
+      <p><a href="https://github.com/Daendells/bisindo">Source code and training scripts</a></p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,954 @@
+{
+ "model": {
+  "id": "20261020_130346",
+  "model": "YOLO11n \u00b7 416 px",
+  "imgsz": 416,
+  "params_m": 2.6,
+  "size_mb": 10.5,
+  "cpu_ms": 13.7,
+  "file": "model/bisindo-yolo11n.onnx"
+ },
+ "eval": {
+  "val": {
+   "n": 1194,
+   "correct": 1178,
+   "top1": 0.9866,
+   "macro_f1": 0.9879,
+   "per_letter": {
+    "A": {
+     "n": 48,
+     "ok": 48,
+     "confused": {}
+    },
+    "B": {
+     "n": 45,
+     "ok": 45,
+     "confused": {}
+    },
+    "C": {
+     "n": 45,
+     "ok": 45,
+     "confused": {}
+    },
+    "D": {
+     "n": 44,
+     "ok": 44,
+     "confused": {}
+    },
+    "E": {
+     "n": 47,
+     "ok": 47,
+     "confused": {}
+    },
+    "F": {
+     "n": 48,
+     "ok": 48,
+     "confused": {}
+    },
+    "G": {
+     "n": 44,
+     "ok": 44,
+     "confused": {}
+    },
+    "H": {
+     "n": 45,
+     "ok": 45,
+     "confused": {}
+    },
+    "I": {
+     "n": 48,
+     "ok": 48,
+     "confused": {}
+    },
+    "J": {
+     "n": 48,
+     "ok": 48,
+     "confused": {}
+    },
+    "K": {
+     "n": 45,
+     "ok": 45,
+     "confused": {}
+    },
+    "L": {
+     "n": 46,
+     "ok": 46,
+     "confused": {}
+    },
+    "M": {
+     "n": 48,
+     "ok": 45,
+     "confused": {
+      "N": 2,
+      "no detection": 1
+     }
+    },
+    "N": {
+     "n": 45,
+     "ok": 40,
+     "confused": {
+      "M": 5
+     }
+    },
+    "O": {
+     "n": 48,
+     "ok": 48,
+     "confused": {}
+    },
+    "P": {
+     "n": 54,
+     "ok": 52,
+     "confused": {
+      "Q": 1,
+      "D": 1
+     }
+    },
+    "Q": {
+     "n": 43,
+     "ok": 42,
+     "confused": {
+      "P": 1
+     }
+    },
+    "R": {
+     "n": 44,
+     "ok": 42,
+     "confused": {
+      "L": 2
+     }
+    },
+    "S": {
+     "n": 43,
+     "ok": 43,
+     "confused": {}
+    },
+    "T": {
+     "n": 47,
+     "ok": 47,
+     "confused": {}
+    },
+    "U": {
+     "n": 43,
+     "ok": 43,
+     "confused": {}
+    },
+    "V": {
+     "n": 48,
+     "ok": 47,
+     "confused": {
+      "Y": 1
+     }
+    },
+    "W": {
+     "n": 47,
+     "ok": 47,
+     "confused": {}
+    },
+    "X": {
+     "n": 44,
+     "ok": 44,
+     "confused": {}
+    },
+    "Y": {
+     "n": 41,
+     "ok": 41,
+     "confused": {}
+    },
+    "Z": {
+     "n": 46,
+     "ok": 44,
+     "confused": {
+      "no detection": 2
+     }
+    }
+   }
+  },
+  "external": {
+   "n": 312,
+   "correct": 292,
+   "top1": 0.935897,
+   "macro_f1": 0.9192,
+   "per_letter": {
+    "A": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "B": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "C": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "D": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "E": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "F": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "G": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "H": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "I": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "J": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "K": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "L": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "M": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "N": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "O": {
+     "n": 12,
+     "ok": 0,
+     "confused": {
+      "Q": 8,
+      "E": 2,
+      "no detection": 1,
+      "N": 1
+     }
+    },
+    "P": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "Q": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "R": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "S": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "T": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "U": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "V": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "W": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "X": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    },
+    "Y": {
+     "n": 12,
+     "ok": 4,
+     "confused": {
+      "W": 2,
+      "X": 2,
+      "no detection": 2,
+      "I": 1,
+      "V": 1
+     }
+    },
+    "Z": {
+     "n": 12,
+     "ok": 12,
+     "confused": {}
+    }
+   }
+  },
+  "test": {
+   "n": 798,
+   "correct": 786,
+   "top1": 0.984962,
+   "macro_f1": 0.9862,
+   "per_letter": {
+    "A": {
+     "n": 32,
+     "ok": 32,
+     "confused": {}
+    },
+    "B": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "C": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "D": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "E": {
+     "n": 31,
+     "ok": 31,
+     "confused": {}
+    },
+    "F": {
+     "n": 32,
+     "ok": 32,
+     "confused": {}
+    },
+    "G": {
+     "n": 29,
+     "ok": 29,
+     "confused": {}
+    },
+    "H": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "I": {
+     "n": 32,
+     "ok": 32,
+     "confused": {}
+    },
+    "J": {
+     "n": 32,
+     "ok": 32,
+     "confused": {}
+    },
+    "K": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "L": {
+     "n": 31,
+     "ok": 31,
+     "confused": {}
+    },
+    "M": {
+     "n": 32,
+     "ok": 30,
+     "confused": {
+      "N": 2
+     }
+    },
+    "N": {
+     "n": 30,
+     "ok": 24,
+     "confused": {
+      "M": 6
+     }
+    },
+    "O": {
+     "n": 32,
+     "ok": 32,
+     "confused": {}
+    },
+    "P": {
+     "n": 36,
+     "ok": 36,
+     "confused": {}
+    },
+    "Q": {
+     "n": 29,
+     "ok": 29,
+     "confused": {}
+    },
+    "R": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "S": {
+     "n": 29,
+     "ok": 28,
+     "confused": {
+      "Q": 1
+     }
+    },
+    "T": {
+     "n": 31,
+     "ok": 31,
+     "confused": {}
+    },
+    "U": {
+     "n": 29,
+     "ok": 29,
+     "confused": {}
+    },
+    "V": {
+     "n": 32,
+     "ok": 30,
+     "confused": {
+      "no detection": 2
+     }
+    },
+    "W": {
+     "n": 31,
+     "ok": 31,
+     "confused": {}
+    },
+    "X": {
+     "n": 30,
+     "ok": 30,
+     "confused": {}
+    },
+    "Y": {
+     "n": 27,
+     "ok": 27,
+     "confused": {}
+    },
+    "Z": {
+     "n": 31,
+     "ok": 30,
+     "confused": {
+      "T": 1
+     }
+    }
+   }
+  }
+ },
+ "threshold": {
+  "conf": 0.6,
+  "coverage": 0.969849,
+  "precision": 0.993092
+ },
+ "audit": {
+  "raw_images": 11470,
+  "exact_duplicates": 1438,
+  "cross_split_copies": 75,
+  "val_near_copy_share": 0.6292,
+  "val_near_copy_share_after": 0.0075,
+  "phash_groups": 4229,
+  "split": {
+   "train": 7963,
+   "val": 1194,
+   "test": 798
+  },
+  "leaky_split_map50_95": 0.9227,
+  "clean_split_map50_95": 0.8402
+ },
+ "comparison": [
+  {
+   "id": "20261020_130346",
+   "model": "YOLO11n \u00b7 416 px",
+   "approach": "Detector, fine-tuned end to end",
+   "val_top1": 0.9866,
+   "external_top1": 0.935897,
+   "imgsz": 416,
+   "params_m": 2.6,
+   "size_mb": 10.5,
+   "cpu_ms": 13.7,
+   "val_correct": 1178,
+   "val_n": 1194,
+   "external_correct": 292,
+   "external_n": 312,
+   "val_mn": 7,
+   "deployed": true
+  },
+  {
+   "id": "20260911_225041",
+   "model": "YOLO11n \u00b7 320 px",
+   "approach": "Detector, fine-tuned end to end",
+   "val_top1": 0.985762,
+   "external_top1": 0.945513,
+   "imgsz": 320,
+   "params_m": 2.6,
+   "size_mb": 10.5,
+   "cpu_ms": 9.8,
+   "val_correct": 1177,
+   "val_n": 1194,
+   "external_correct": 295,
+   "external_n": 312,
+   "val_mn": 8,
+   "deployed": false
+  },
+  {
+   "id": "20260916_112443",
+   "model": "YOLOv8n \u00b7 320 px",
+   "approach": "Detector, fine-tuned end to end",
+   "val_top1": 0.984925,
+   "external_top1": 0.932692,
+   "imgsz": 320,
+   "params_m": 3.0,
+   "size_mb": 12.2,
+   "cpu_ms": 9.6,
+   "val_correct": 1176,
+   "val_n": 1194,
+   "external_correct": 291,
+   "external_n": 312,
+   "val_mn": 10,
+   "deployed": false
+  },
+  {
+   "model": "Hand landmarks + SVM",
+   "approach": "MediaPipe Hands (one hand) + RBF SVM",
+   "val_top1": 0.773,
+   "external_top1": 0.8173,
+   "deployed": false
+  },
+  {
+   "model": "DINOv2 ViT-S/14 + SVM",
+   "approach": "Frozen image embedding + RBF SVM",
+   "val_top1": 0.8744,
+   "external_top1": 0.9231,
+   "deployed": false
+  }
+ ],
+ "samples": [
+  {
+   "file": "samples/A-1.jpg",
+   "letter": "A",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/A-2.jpg",
+   "letter": "A",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/A-3.jpg",
+   "letter": "A",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/B-1.jpg",
+   "letter": "B",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/B-2.jpg",
+   "letter": "B",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/B-3.jpg",
+   "letter": "B",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/C-1.jpg",
+   "letter": "C",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/C-2.jpg",
+   "letter": "C",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/C-3.jpg",
+   "letter": "C",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/D-1.jpg",
+   "letter": "D",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/D-2.jpg",
+   "letter": "D",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/D-3.jpg",
+   "letter": "D",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/E-1.jpg",
+   "letter": "E",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/E-2.jpg",
+   "letter": "E",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/E-3.jpg",
+   "letter": "E",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/F-1.jpg",
+   "letter": "F",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/F-2.jpg",
+   "letter": "F",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/F-3.jpg",
+   "letter": "F",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/G-1.jpg",
+   "letter": "G",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/G-2.jpg",
+   "letter": "G",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/G-3.jpg",
+   "letter": "G",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/H-1.jpg",
+   "letter": "H",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/H-2.jpg",
+   "letter": "H",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/H-3.jpg",
+   "letter": "H",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/I-1.jpg",
+   "letter": "I",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/I-2.jpg",
+   "letter": "I",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/I-3.jpg",
+   "letter": "I",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/J-1.jpg",
+   "letter": "J",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/J-2.jpg",
+   "letter": "J",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/J-3.jpg",
+   "letter": "J",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/K-1.jpg",
+   "letter": "K",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/K-2.jpg",
+   "letter": "K",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/K-3.jpg",
+   "letter": "K",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/L-1.jpg",
+   "letter": "L",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/L-2.jpg",
+   "letter": "L",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/L-3.jpg",
+   "letter": "L",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/M-1.jpg",
+   "letter": "M",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/M-2.jpg",
+   "letter": "M",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/M-3.jpg",
+   "letter": "M",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/N-1.jpg",
+   "letter": "N",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/N-2.jpg",
+   "letter": "N",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/N-3.jpg",
+   "letter": "N",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/O-1.jpg",
+   "letter": "O",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/O-2.jpg",
+   "letter": "O",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/O-3.jpg",
+   "letter": "O",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/P-1.jpg",
+   "letter": "P",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/P-2.jpg",
+   "letter": "P",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/P-3.jpg",
+   "letter": "P",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/Q-1.jpg",
+   "letter": "Q",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/Q-2.jpg",
+   "letter": "Q",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/Q-3.jpg",
+   "letter": "Q",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/R-1.jpg",
+   "letter": "R",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/R-2.jpg",
+   "letter": "R",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/R-3.jpg",
+   "letter": "R",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/S-1.jpg",
+   "letter": "S",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/S-2.jpg",
+   "letter": "S",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/S-3.jpg",
+   "letter": "S",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/T-1.jpg",
+   "letter": "T",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/T-2.jpg",
+   "letter": "T",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/T-3.jpg",
+   "letter": "T",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/U-1.jpg",
+   "letter": "U",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/U-2.jpg",
+   "letter": "U",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/U-3.jpg",
+   "letter": "U",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/V-1.jpg",
+   "letter": "V",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/V-2.jpg",
+   "letter": "V",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/V-3.jpg",
+   "letter": "V",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/W-1.jpg",
+   "letter": "W",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/W-2.jpg",
+   "letter": "W",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/W-3.jpg",
+   "letter": "W",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/X-1.jpg",
+   "letter": "X",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/X-2.jpg",
+   "letter": "X",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/X-3.jpg",
+   "letter": "X",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/Y-1.jpg",
+   "letter": "Y",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/Y-2.jpg",
+   "letter": "Y",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/Y-3.jpg",
+   "letter": "Y",
+   "background": "white shirt"
+  },
+  {
+   "file": "samples/Z-1.jpg",
+   "letter": "Z",
+   "background": "plain wall"
+  },
+  {
+   "file": "samples/Z-2.jpg",
+   "letter": "Z",
+   "background": "dotted shirt"
+  },
+  {
+   "file": "samples/Z-3.jpg",
+   "letter": "Z",
+   "background": "white shirt"
+  }
+ ],
+ "hero": {
+  "file": "samples/B-1.jpg",
+  "letter": "B",
+  "conf": 0.928,
+  "box": [
+   0.0974,
+   0.425,
+   0.9665,
+   1.0
+  ]
+ }
+}
