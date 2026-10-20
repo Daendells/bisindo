@@ -61,6 +61,7 @@ configs/        training configs (yolo11n.yaml = baseline, yolo11n_416.yaml = th
 data/splits/    file lists for each split (v1 = original leaky split, v2 = group split used here)
 data/reports/   audit reports
 docs/           the website (GitHub Pages): index.html, app.js, style.css, results.json, model/, samples/
+index.html      forwards to docs/ when GitHub Pages publishes the repository root instead of /docs
 experiments/    runs.csv and per-image predictions behind every reported number
 scripts/        audit, split, train, evaluate, export, and the two baselines
 tests/          unit tests for the metric rules (top-1, macro-F1, confidence threshold)
